@@ -1,0 +1,77 @@
+h1 {
+  color: purple;
+  font-size: 36px;
+  font-style: italic;
+  text-align: center;
+  margin: 3vh auto;
+}
+
+p {
+  color:  #00A67C;
+  font-weight: 700;
+  font-size: 18px;
+  text-align: center;
+  width: auto;
+
+}
+
+button {
+  display: block;
+  margin: 2vh auto;
+  padding: 0.5rem 1rem;
+  background-color: #00A67C;
+  color: #fff;
+}
+
+/* CONTAINERS STYLING */
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin: 2vh auto;
+  width: 50vw;
+}
+
+.grid {
+  height: 450px;
+  width: 300px;
+  margin-left: 10vw;
+  display: flex;
+  flex-wrap: wrap;
+  border: 2px dotted purple;
+  background-color: aliceblue;
+}
+
+.info {
+  margin: 2vh auto;
+  background-color: ghostwhite;
+  border-radius: 5px;
+  padding: 1vh 2vw;
+  box-shadow: 1px 0 5px 1px;
+}
+
+.next-up {
+  height: 60px;
+  width: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  border: 2px solid purple;
+  background-color: floralwhite;
+  margin: 5vh auto;
+}
+
+.grid div, .next-up div {
+  width: 15px;
+  height: 15px;
+  border: 0.2px solid #fff;
+  box-sizing: border-box;
+}
+
+
+/* TETROMINOES STYLING */
+
+.tetromino {
+  border-radius: 3px;
+  box-shadow: 0 0 1px #000;
+}
