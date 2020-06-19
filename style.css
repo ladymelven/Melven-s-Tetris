@@ -1,5 +1,16 @@
+body {
+  background: rgb(240,248,255);
+  background: linear-gradient(90deg,
+  rgba(240,248,255,1) 0%,
+  rgba(103,189,224,1) 25%,
+  rgba(175,238,238,1) 50%,
+  rgba(41, 133, 133,1) 73%,
+  rgba(173,216,230,1) 100%);
+  background-size: cover;
+}
+
 h1 {
-  color: purple;
+  color: indigo;
   font-size: 36px;
   font-style: italic;
   text-align: center;
@@ -7,7 +18,8 @@ h1 {
 }
 
 p {
-  color:  #00A67C;
+  color:  indigo;
+  font-family: sans-serif;
   font-weight: 700;
   font-size: 18px;
   text-align: center;
@@ -16,11 +28,33 @@ p {
 }
 
 button {
+  box-sizing: border-box;
   display: block;
   margin: 2vh auto;
   padding: 0.5rem 1rem;
-  background-color: #00A67C;
+  background-color: teal;
   color: #fff;
+  font-family: sans-serif;
+  box-shadow: 0 1px 4px 2px rgba(0, 0, 0, .2);
+  border-top: 1px solid gainsboro;
+  border-left: 1px solid gainsboro;
+  border-bottom: none;
+  border-right: none;
+  border-radius: 7px;
+}
+
+button:active {
+  outline: none;
+  box-shadow: 0 1px 2px 1px rgba(0, 0, 0, .6);
+  border-top: 1px solid dimgrey;
+  border-left: 1px solid dimgrey;
+  border-bottom: none;
+  border-right: none;
+  color: paleturquoise;
+}
+
+button:focus {
+  outline: none;
 }
 
 /* CONTAINERS STYLING */
@@ -30,25 +64,36 @@ button {
   justify-content: space-around;
   align-items: flex-start;
   margin: 2vh auto;
-  width: 50vw;
+}
+
+.wrapper_grid {
+  background-color: rgba(135, 206, 235, .4);
+  border-radius: 10px;
+  box-shadow: 1px 0 5px 1px;
+  padding: 2rem;
+  position: absolute;
 }
 
 .grid {
+  background-color: lightcyan;
+  border: 2px solid indigo;
+  box-shadow: 1px 0 5px 1px;
   height: 450px;
   width: 300px;
-  margin-left: 10vw;
+  /* margin-left: 10vw; */
   display: flex;
   flex-wrap: wrap;
-  border: 2px dotted purple;
-  background-color: aliceblue;
+  overflow: hidden;
 }
 
 .info {
-  margin: 2vh auto;
-  background-color: ghostwhite;
+  margin-left: 45vw;
+  margin-top: 3rem;
+  background-color: rgba(248, 248, 255, .75);
   border-radius: 5px;
   padding: 1vh 2vw;
   box-shadow: 1px 0 5px 1px;
+  max-height: 400px;
 }
 
 .next-up {
@@ -56,15 +101,16 @@ button {
   width: 60px;
   display: flex;
   flex-wrap: wrap;
-  border: 2px solid purple;
-  background-color: floralwhite;
-  margin: 5vh auto;
+  border: 2px solid indigo;
+  background-color: lightcyan;
+  margin: 2vh auto;
+  padding: 1px;
 }
 
 .grid div, .next-up div {
   width: 15px;
   height: 15px;
-  border: 0.2px solid #fff;
+  border: 0.2px solid paleturquoise;
   box-sizing: border-box;
 }
 
@@ -75,3 +121,17 @@ button {
   border-radius: 3px;
   box-shadow: 0 0 1px #000;
 }
+
+/* MEDIA QUERIES */
+
+@media only screen and (max-width: 1250px) {
+  .info {
+    margin-left: 60vw;
+  }
+}
+
+/* @media only screen and (max-width: 768px) {
+  .next-up {
+    margin: 2vh auto;
+  }
+} */
