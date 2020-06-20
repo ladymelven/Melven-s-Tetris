@@ -1,12 +1,10 @@
 body {
-  background: rgb(240,248,255);
   background: linear-gradient(90deg,
   rgba(240,248,255,1) 0%,
   rgba(103,189,224,1) 25%,
   rgba(175,238,238,1) 50%,
   rgba(41, 133, 133,1) 73%,
   rgba(173,216,230,1) 100%);
-  background-size: cover;
 }
 
 h1 {

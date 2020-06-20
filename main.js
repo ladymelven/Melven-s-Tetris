@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-
 // Setting up the field
 	const grid = document.querySelector('.grid');
 	let cells = Array.from(document.querySelectorAll('.grid div'));
@@ -28,31 +27,31 @@ document.addEventListener('DOMContentLoaded', () => {
 // Set Tetrominoes
 
 	const iTetromino = [
-		[1, width+1, 2*width+1, 3*width+1],
-		[width, width+1, width+2, width+3],
-		[1, width+1, 2*width+1, 3*width+1],
-		[width, width+1, width+2, width+3]
+		[1, width + 1, 2 * width + 1, 3 * width + 1],
+		[width, width + 1, width + 2, width + 3],
+		[1, width + 1, 2 * width + 1, 3 * width + 1],
+		[width, width + 1, width + 2, width + 3]
 	];
 
 	const oTetromino = [
-		[0, 1, width, width+1],
-		[0, 1, width, width+1],
-		[0, 1, width, width+1],
-		[0, 1, width, width+1]
+		[0, 1, width, width + 1],
+		[0, 1, width, width + 1],
+		[0, 1, width, width + 1],
+		[0, 1, width, width + 1]
 	];
 
 	const lTetromino = [
-		[0, width, 2*width, 2*width+1],
-		[width, width+1, 2, width+2],
-		[0, 1, width+1, 2*width+1],
+		[0, width, 2 * width, 2 * width + 1],
+		[width, width + 1, 2, width + 2],
+		[0, 1, width + 1, 2 * width + 1],
 		[0, width, 1, 2]
 	];
 
 	const zTetromino = [
-		[0, width, width+1, 2*width+1],
-		[width, 1, width+1, 2],
-		[0, width, width+1, 2*width+1],
-		[width, 1, width+1, 2]
+		[0, width, width + 1, 2 * width + 1],
+		[width, 1, width + 1, 2],
+		[0, width, width + 1, 2 * width + 1],
+		[width, 1, width + 1, 2]
 	];
 
 	const tTetromino = [
@@ -102,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			drawTetromino();
 			displayNextUp();
 			addScore();
-			levelUp();
+			// levelUp();
 			gameOver();
 		}
 	};
@@ -145,6 +144,22 @@ document.addEventListener('DOMContentLoaded', () => {
 			currentRotation = 0;
 		};
 		current = theTetrominoes[randomTetromino][currentRotation];
+		// fix rotation at the edges
+		while (current.some(
+			index => Number.isInteger((index + currentPosition) / width)) &&
+			current.some(
+				index => Number.isInteger((index + currentPosition + 1) / width))) {
+			if (randomTetromino === 0) { // iTetromino can get split at both edges
+				if (current.some(
+					index => Number.isInteger((index + currentPosition + 2) / width))) {
+					currentPosition -= 1;
+				} else {
+					currentPosition += 1;
+				}
+			} else {
+				currentPosition -= 1;
+			}
+		}
 		drawTetromino();
 	};
 
@@ -214,6 +229,9 @@ document.addEventListener('DOMContentLoaded', () => {
 					i + 11, i + 12, i + 13, i + 14, i + 15, i + 16, i + 17, i + 18, i + 19];
 			if (row.every(index => cells[index].classList.contains('taken'))) {
 				score += width;
+				if (score && Number.isInteger(score / 60)) {
+					levelUp();
+				}
 				scoreDisplay.innerHTML = score;
 				row.forEach(index => {
 					cells[index].classList.remove('taken');
@@ -258,21 +276,20 @@ document.addEventListener('DOMContentLoaded', () => {
 		speed = 500;
 		displayLevel.innerHTML = currentLevel;
 		scoreDisplay.innerHTML = score;
+		document.removeEventListener('keydown', control);
+		document.addEventListener('keydown', control);
 		startButton.disabled = false;
 	});
 
 // Level up
 
 	function levelUp () {
-		if (score === 60) {
-			currentLevel++;
-			displayLevel.innerHTML = currentLevel;
-			score = 0;
-			scoreDisplay.innerHTML = score;
-			speed /= 1.5;
-			startButton.click();
-			startButton.click();
-			console.log(speed);
-		}
+		currentLevel++;
+		displayLevel.innerHTML = currentLevel;
+		// score = 0;
+		// scoreDisplay.innerHTML = score;
+		speed /= 1.5;
+		startButton.click();
+		startButton.click();
 	}
 });
